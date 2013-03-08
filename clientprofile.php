@@ -36,8 +36,9 @@ and open the template in the editor.
             </ul>
         </div>
         
+        <!--Contact Details Form-->
         <div id="contactdetails">
-            <form>
+            <form id ="contactdetailsfrom">
                 
                 <?php
                     //link to database
@@ -49,7 +50,7 @@ and open the template in the editor.
                 
                 
                     echo "First Name: <input type=\"text\" name=\"firstname\" value=\"".$client_data['first_name']."\"/><br/>";
-                    echo "Last Name: <input type=\"text\" name=\"lastename\" value=\"".$client_data['last_name']."\"/><br/>";
+                    echo "Last Name: <input type=\"text\" name=\"lastname\" value=\"".$client_data['last_name']."\"/><br/>";
                     echo "Email Address: <input type='text' name='email' value='".$client_data['username']."'\><br/>";
                     
                     
