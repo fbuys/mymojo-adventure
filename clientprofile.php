@@ -56,12 +56,13 @@ and open the template in the editor.
                     
                 ?>
                 
-                <input type="submit" value="Save">
+                <input id="contactformsubmit"type="submit" value="Save">
                 
             </form>
                  
              
         </div>
+        
         
     </body>
 </html>
