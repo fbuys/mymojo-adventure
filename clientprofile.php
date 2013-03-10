@@ -6,7 +6,7 @@ and open the template in the editor.
 <html>
     <head>
         <link type="text/css" rel="stylesheet" href="/css/general.css"/>
-        <script type ="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="scripts/clientprofile.js"></script>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
