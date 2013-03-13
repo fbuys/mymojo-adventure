@@ -38,7 +38,7 @@ and open the template in the editor.
         
         <!--Contact Details Form-->
         <div id="contactdetails">
-            <form id ="contactdetailsfrom">
+            <form id ="contactdetailsform">
                 
                 <?php
                     //link to database
@@ -55,7 +55,7 @@ and open the template in the editor.
                     
                     
                 ?>
-                
+                <p></p>
                 <input id="contactformsubmit"type="submit" value="Save">
                 
             </form>

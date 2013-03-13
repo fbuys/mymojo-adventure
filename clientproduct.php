@@ -6,6 +6,10 @@ and open the template in the editor.
 <html>
     <head>
         <link type="text/css" rel="stylesheet" href="/css/general.css"/>
+        <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="scripts/cancelproduct.js"></script>
+        <script type="text/javascript" src="scripts/addproduct.js"></script>
+        <script type="text/javascript" src="scripts/dnseditview.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>MyMojo-clientproduct</title>
     </head>
@@ -30,11 +34,6 @@ and open the template in the editor.
                     echo "<a href=\"clientprofile.php?id=".$_GET['id']."\">Contact Details</a> \n";
                     ?>
                 </li>
-                <li>
-                    <?php
-                    echo "<a href=\"clientproduct.php?id=".$_GET['id']."\">Product Details</a>\n";
-                    ?>
-                </li>
             </ul>
         </div>
         
@@ -52,11 +51,13 @@ and open the template in the editor.
                     if($anymatches = mysql_num_rows($client_product_result) == 0)
                     {
                         echo "This client has 0 products with us. ";
+                        //add 'add' button above table
+                        echo "\n <img src='/images/greenplus.png'id='icon' class='add_icon' /> ";
                     }
                     else
                     {
-                        $sql_query = "SELECT * FROM product WHERE ( id="; //used for sql queries
-                        ($data = mysql_fetch_array($client_product_result));//use first row to build query
+                        $sql_query = "SELECT id, name, created_at FROM product WHERE ( id="; //used for sql queries
+                        $data = mysql_fetch_array($client_product_result);//use first row to build query
                         $sql_query = $sql_query.$data['product_id'];//add first id to query
                         //build query for all products linked to customer, use product_id for rows returned
                         while( ($data = mysql_fetch_array($client_product_result)) == true)
@@ -67,70 +68,62 @@ and open the template in the editor.
                         }
                         //finish SQL query
                         $sql_query = $sql_query." );";
-                        
                         //get result for query just built
                         $products = mysql_query($sql_query); //return list of products
                         $fields_num = mysql_num_fields($products);
                         
+                        //add 'add' button above table
+                        echo "\n <img src='/images/greenplus.png'id='icon' class='add_icon' /> ";
                         //build table
-                        echo "<table>";
+                        echo "<table id='product_tabel'>";
                             echo    "<thead>";
-                            echo    "<tr><th colspan=\"{$fields_num}\">Manage Client Products</th></tr><tr>";
-                            // printing table headers
-                            for($i=0; $i<$fields_num; $i++)
-                            {
-                                $field = mysql_fetch_field($products);
-                                echo "<th>{$field->name}</th>";
-                            }
-                        echo "</tr>\n";
-                            
+                            echo    "<tr><th colspan='3'>Manage Client Products</th></tr><tr>";
+                            echo "<th>Product</th>";
+                            echo "<th>Signup Date</th>";
+                            echo "<th>Cancel</th>";
+                            echo "</tr>\n";
+                         echo    "</thead>";
+                         echo    "<tbody>";   
                         // printing table rows
                         while($row = mysql_fetch_row($products))
                         {
-                            echo "<tr>";
-
-                            // $row is array... foreach( .. ) puts every element
-                            // of $row to $cell variable
-                            foreach($row as $cell)
-                                echo "<td>$cell</td>";
-
-                            echo "</tr>\n";
+                            echo "<tr id='{$row[0]}'>"; //open row with id
+                            echo "<td><a>{$row[1]}</a></td>"; //add first cell
+                            echo "<td>{$row[2]}</td>"; //add 2nd cell
+                            echo "<td><img src='/images/redx.png'id='icon' class= 'cancel_icon'/>"; //cancel icon
+                            echo "</tr>\n"; //close row
                         }
-                        mysql_free_result($result);
+                        echo    "</tbody>";
+                        mysql_free_result($products);
                     }
-                    
-                    
-                
-            
-                    
-                        
-                        
-                       /* echo    "<tr><th>ID</th><th>First Name</th><th>Last Name</th>";
-                echo    <th>Email Address</th><th>Message</th><th>Success?</th></tr>
-                echo</thead>
-                echo<tbody>
-
-                    
-            /
-                    // printing table rows
-                    while($row = mysql_fetch_row($result))
-                    {
-                        echo "<tr>";
-
-                        // $row is array... foreach( .. ) puts every element
-                        // of $row to $cell variable
-                        foreach($row as $cell)
-                            echo "<td>$cell</td>";
-
-                        echo "</tr>\n";
-                    }
-                    mysql_free_result($result);*/
                 ?>
                 
             </tbody>
         </table>
             
         </div>
+        
+        <div id="dnstable"></div>
+        
+        <div id="popupNewProduct">
+        <a id="popupProductClose">x</a>
+        <h1>Add New Product</h1>
+        <form id="productForm">
+        Please note ALL fields are mandatory!
+        <br/><br/>
+        * Domain : <input type="text" name="name" value=""><br/>
+        * Vendor :  <select name="vendor">
+                    <option value="Uniform">Uniform (co.za)</option>
+                    <option value="Opensrs">OpenSRS (other)</option>
+                 </select><br/>
+                 <input id="addproductsubmit" type="submit" value="Create">
+                 <p></p>
+        <br/>
+        Press ESCAPE, Click on X (right-top) or Click Out from the popup to close the popup!
+        
+        </form>
+        </div>
+        <div id="backgroundPopup"></div>
         
         
     </body>

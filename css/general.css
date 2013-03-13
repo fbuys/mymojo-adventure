@@ -19,6 +19,9 @@ root {
     /*set size of icon*/
     height: 20px;
     width: 20px;
+    /*center image*/
+    margin: auto;
+    padding: auto;
     /*remove hyperlink decoration*/
     text-decoration: none;
 
@@ -29,5 +32,52 @@ table{
 }
 td{
     border: 1px solid;
+}
+a{
+    cursor: pointer;
+    text-decoration:none;
+}
+/*contactdetails div for client profile contact details part*/
+#contactdetails{
+    border-radius: 10px;
+    height: 25%;
+    width: 25%;
+}
+
+#backgroundPopup{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    background:#000000;
+    border:1px solid #cecece;
+    z-index:1;
+}
+
+#popupNewProduct{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:300px;
+    width:350px;
+    background:#FFFFFF;
+    border:2px solid #cecece;
+    z-index:2;
+    padding:12px;
+    font-size:13px;
+}
+
+#popupProductClose{
+    font-size:14px;
+    line-height:14px;
+    right:6px;
+    top:4px;
+    position:absolute;
+    color:#6fa5fd;
+    font-weight:700;
+    display:block;
 }
 
