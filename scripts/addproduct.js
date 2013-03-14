@@ -6,7 +6,7 @@ var $popupStatus = 0;
         var FORM_HAS_CHANGED = false;
 
 //loading popup with jQuery magic!
-function loadPopup(){
+function loadNewProductPopup(){
     //loads popup only if it is disabled
     if($popupStatus===0){
         $("#backgroundPopup").css({
@@ -19,7 +19,7 @@ function loadPopup(){
 }
 
 //disabling popup with jQuery magic!
-function disablePopup(){
+function disableNewProductPopup(){
     //disables popup only if it is enabled
     if($popupStatus==1){
     $("#backgroundPopup").fadeOut("slow");
@@ -29,7 +29,7 @@ function disablePopup(){
 }
 
 //centering popup
-function centerPopup(){
+function centerNewProductPopup(){
     //request data for centering
     var windowWidth = document.documentElement.clientWidth;
     var windowHeight = document.documentElement.clientHeight;
@@ -54,24 +54,24 @@ $(document).ready( function(){
     $('.add_icon').click(function(event){
         console.log("icon clicked");
         //centering with css
-        centerPopup();
+        centerNewProductPopup();
         //load popup
-        loadPopup();
+        loadNewProductPopup();
         });
 
         //CLOSING POPUP
         //Click the x event!
         $("#popupProductClose").click(function(){
-            disablePopup();
+            disableNewProductPopup();
         });
         //Click out event!
         $("#backgroundPopup").click(function(){
-            disablePopup();
+            disableNewProductPopup();
         });
         //Press Escape event!
         $(document).keypress(function(e){
             if(e.keyCode===27 && $popupStatus===1){
-                disablePopup();
+                disableNewProductPopup();
             }
         });
     
@@ -122,7 +122,7 @@ $(document).ready( function(){
                 $('#productForm').css('background-color', '#33FF99')
 
                 //remove popup
-                disablePopup();
+                disableNewProductPopup();
                 
                 //reload page
                 //document.location.reload();

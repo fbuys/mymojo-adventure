@@ -105,6 +105,35 @@ and open the template in the editor.
         
         <div id="dnstable"></div>
         
+        <div id="popupNewDns">
+        <a id="popupDnsClose">x</a>
+        <h1>Add New DNS Record</h1>
+        <form id="DnsForm">
+        Please note ALL fields are mandatory!
+        <br/><br/>
+        * Record : <input type="text" name="record" value=""><br/>
+        * Type :  <select name="type">
+                    <option value="SOA">SOA</option>
+                    <option value="A">A</option>
+                    <option value="MX">MX</option>
+                    <option value="CNAME">CNAME</option>
+                    <option value="NS">NS</option>
+                    <option value="PTR">PTR</option>
+                    <option value="TXT">TXT</option>
+                    <option value="WRK">WRK</option>
+                    <option value="SRV">SRV</option>
+                 </select><br/>
+        * Priority (for MX) : <input type="text" name="priority" value=""><br/>
+        * Content : <input type="text" name="content" value=""><br/>
+        * TTL : <input type="text" name="ttl" value=""><br/>
+                 <input id="adddnssubmit" type="submit" value="Add">
+                 <p></p>
+        <br/>
+        Press ESCAPE, Click on X (right-top) or Click Out from the popup to close the popup!
+        
+        </form>
+        </div>
+        
         <div id="popupNewProduct">
         <a id="popupProductClose">x</a>
         <h1>Add New Product</h1>

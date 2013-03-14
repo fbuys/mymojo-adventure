@@ -80,4 +80,41 @@ a{
     font-weight:700;
     display:block;
 }
+#popupNewDns{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:350px;
+    width:350px;
+    background:#FFFFFF;
+    border:2px solid #cecece;
+    z-index:2;
+    padding:12px;
+    font-size:13px;
+}
+
+#popupDnsClose{
+    font-size:14px;
+    line-height:14px;
+    right:6px;
+    top:4px;
+    position:absolute;
+    color:#6fa5fd;
+    font-weight:700;
+    display:block;
+}
+#productDetails{
+    
+    height:300px;
+    width:50%;
+    float: left;
+    
+}
+
+#dnstable{
+    
+    height:300px;
+    width:50%;
+    float: left;
+}
 
