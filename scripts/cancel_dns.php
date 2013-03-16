@@ -1,0 +1,27 @@
+<?php
+
+/*
+ * This files simply saves the data
+ * posted to it, to the users account
+ * 
+ */
+
+    //connect to database
+    require 'database_connect.php';
+    
+    //save posted variables
+    $id = $_GET['id'];
+
+    //create query
+    $sql_query = "DELETE FROM dnscluster WHERE id={$id}";
+    
+    //run query
+    mysql_query($sql_query);
+    
+    //create query
+    $sql_query = "DELETE FROM product_dns WHERE product_id={$id}";
+    
+    //run query
+    mysql_query($sql_query);
+    
+?>

@@ -2,8 +2,11 @@
 //0 means disabled; 1 means enabled;
 var $popupStatus = 0;
 
-        //variable to see if form has changed
-        var FORM_HAS_CHANGED = false;
+//used to stor id in url
+var $get_id = -1;
+
+//variable to see if form has changed
+var FORM_HAS_CHANGED = false;
 
 //loading popup with jQuery magic!
 function loadNewProductPopup(){
@@ -49,6 +52,7 @@ function centerNewProductPopup(){
 
 }
 
+
 //make sure document is ready.
 $(document).ready( function(){
     $('.add_icon').click(function(event){
@@ -64,7 +68,7 @@ $(document).ready( function(){
         $("#popupProductClose").click(function(){
             disableNewProductPopup();
         });
-        //Click out event!
+        /*/Click out event!
         $("#backgroundPopup").click(function(){
             disableNewProductPopup();
         });
@@ -73,7 +77,7 @@ $(document).ready( function(){
             if(e.keyCode===27 && $popupStatus===1){
                 disableNewProductPopup();
             }
-        });
+        });*/
     
         //hide submit button after load
         //$('#addproductsubmit').hide();
@@ -102,7 +106,7 @@ $(document).ready( function(){
         if(FORM_HAS_CHANGED){
             
             //get the client id from the url
-            var $get_id = document.location.toString();
+            $get_id = document.location.toString();
             $get_id = $get_id.substr($get_id.indexOf("id"),4);//will be used to GET id for profile save
                     
             //there is no changes so now we want to save

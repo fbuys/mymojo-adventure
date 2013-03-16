@@ -57,11 +57,11 @@
         while($row = mysql_fetch_array($dns_entries))
         {
             echo "<tr id='{$row['id']}'>"; //open row with id
-            echo "<td><a>{$row['record']}</a></td>"; //add record cell
-            echo "<td>{$row['type']}</td>"; //add type cell
-            echo "<td>{$row['priority']}</td>"; //add priority cell
-            echo "<td>{$row['ttl']}</td>"; //add ttl cell
-            echo "<td>{$row['content']}</td>"; //add content cell
+            echo "<td class='inline' id='record'>{$row['record']}</td>"; //add record cell
+            echo "<td class='inline' id='type'>{$row['type']}</td>"; //add type cell
+            echo "<td class='inline' id='priority'>{$row['priority']}</td>"; //add priority cell
+            echo "<td class='inline' id='ttl'>{$row['ttl']}</td>"; //add ttl cell
+            echo "<td class='inline' id='content'>{$row['content']}</td>"; //add content cell
             echo "<td><img src='/images/redx.png'id='icon' class= 'delete_dns_icon'/>"; //cancel icon
             echo "</tr>\n"; //close row
         }

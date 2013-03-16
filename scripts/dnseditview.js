@@ -54,12 +54,21 @@ function loadDNSTable(){
         $.get('scripts/dns_table.php', { id: $product_id }, function(data) {
             //add dns table recently generated
             $('#dnstable').html(data);
+            
+            //save reminded message
+            $('#DnsForm p').html("");
+
+            //change colour of div
+            $('#DnsForm').css('background-color', '#FFFFFF');
+            
+            //hide submit button after load
+            $('#adddnssubmit').hide();
 
         })
         .fail(function() { 
 
         //notify of error during cancellation
-        alert("The product failed to be created in the database!\nAssistance required!");
+        alert("The DNS table failed to load!\nAssistance required!");
 
         });
 }
@@ -91,16 +100,7 @@ $(document).ready( function(){
         $("#popupDnsClose").click(function(){
             disablePopup();
         });
-        //Click out event!
-        $("#backgroundPopup").click(function(){
-            disablePopup();
-        });
-        //Press Escape event!
-        $(document).keypress(function(e){
-            if(e.keyCode===27 && $popupStatus===1){
-                disablePopup();
-            }
-        });
+        
     
         //hide submit button after load
         $('#adddnssubmit').hide();
@@ -176,10 +176,61 @@ $(document).ready( function(){
 
     });
         
-        //event on click for add_dns_icon
-        $(document).on('click','.delete_dns_icon', function(){
-            alert("delete dns!");
+    //event on click for add_dns_icon
+    $(document).on('click','.delete_dns_icon', function(){
+        //first ask user if they are sure to cancel
+        var r=confirm("Are you sure?\nIf you say OK, the product will be cancelled");
+            if (r===true) //user is sure
+            {
+                    //alert("delete dns!");
+                    //get the product id
+                    $get_id = $(this).closest('tr').attr('id');//will be used to GET id for profile save
+
+                    //there is changes so now we want to save
+                    var $getting = $.get('scripts/cancel_dns.php', { id: $get_id }, function() {
+                    //remove row from table
+                    $('#'+$get_id).hide('slow');                    
+
+                    })
+                    .fail(function() { 
+
+                    //notify of error during cancellation
+                    alert("The DNS failed to be cancelled from database!\nAssistance required!");//
+
+                });//*/
+
+            }
+
         });
+        //make table inline editable
+        $(document).on('click','#dnstable td', function(){
+            
+            //get the product id
+            $get_id = $(this).closest('tr').attr('id');//will be used to GET id for profile save
+            $htmlid = $(this).attr('id');
+            $class = $(this).attr('class');
+            console.log( $get_id );
+            console.log( $htmlid );
+            console.log( $class );
+            $('.inline').editable('scripts/edit_dns.php?id='+$get_id, {
+                event: 'dblclick',//activate on dblclick
+                submit: 'Save', //show save to submit data
+                indicator : '<img src="images/indicator.gif">',
+                tooltip   : 'Dubble click to edit...',
+                name : 'data',
+                callback : function(value, settings) {
+                    
+                    $(this).html($.trim(value));
+                    console.log(this);
+                    console.log(value);
+                    console.log(settings);
+                }
+            });
+            
+        });
+        
+    
+    });
         
         /*fing awesome way to convert table row to array
         $target = "#"+$get_id+" td";
@@ -187,7 +238,7 @@ $(document).ready( function(){
         console.log( index + ": " + $(this).text() );
         });*/
     
-});
+
     
         
 

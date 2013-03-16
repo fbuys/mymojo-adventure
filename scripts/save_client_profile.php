@@ -19,7 +19,7 @@
     
     //create query
    $sql_query = "UPDATE client_contact SET first_name='{$first_name}',
-        last_name='{$last_name}', username='{$email}', updated_at='{$datetime}' WHERE id={$id}";
+        last_name='{$last_name}', username='{$email}', updated_at='{$datetime}' WHERE id={$id};";
         
     //submit query to database
     mysql_query($sql_query);
