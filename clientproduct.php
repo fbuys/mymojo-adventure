@@ -63,7 +63,7 @@ and open the template in the editor.
                              {
                                  echo "This client has 0 products with us. ";
                                  //add 'add' button above table
-                                 echo "\n <img src='/images/greenplus.png'id='icon' class='add_icon' /> ";
+                                 echo "\n <img src='/images/greenplus.png'id='icon' class='add_icon' /> <br/>";
                              }
                              else
                              {
@@ -84,7 +84,7 @@ and open the template in the editor.
                                  $fields_num = mysql_num_fields($products);
 
                                  //add 'add' button above table
-                                 echo "\n <img src='/images/greenplus.png'id='icon' class='add_icon' /> ";
+                                 echo "\n <img src='/images/greenplus.png'id='icon' class='add_icon' /> <p></p>";
                                  //build table
                                  echo "<table id='product_tabel'>";
                                      echo    "<thead>";
@@ -113,12 +113,13 @@ and open the template in the editor.
         </table>
             
         </div>
+                    <div id="dnstable"></div>
                 </div>
             </div>
         </div>
         
         
-        <div id="dnstable"></div>
+        
         
         <div id="popupNewDns">
         <a id="popupDnsClose">x</a>

@@ -11,7 +11,7 @@
     {
         echo "This product has 0 DNS entries. ";
         //add 'add' button above table
-        echo "\n <img src='../images/greenplus.png'id='icon' class='add_dns_icon' /> ";
+        echo "\n <img src='../images/greenplus.png'id='icon' class='add_dns_icon' /> <p></p>";
     }
     else
     { 
@@ -37,7 +37,7 @@
         
         //add 'add' button above table
         //echo "</br></br>";
-        echo "\n <img src='/images/greenplus.png'id='icon' class='add_dns_icon' /> ";
+        echo "\n <img src='/images/greenplus.png'id='icon' class='add_dns_icon' /> <p></p>";
         
         //build table
         echo "<table id='dns_table'>"; //opening table tag

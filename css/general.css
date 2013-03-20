@@ -351,9 +351,29 @@ hr
     
 
 }
+/*Tables General*/
 
-table{
-    border: 1px solid;
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse:collapse;
+    width:70%;
+    height:auto;
+    padding: 5px;
+    background-color: #58ee4f;
+}
+
+tr.alternate td
+{
+color:#000000;
+background-color:#EAF2D3;
+}
+
+th
+{
+    font-size:1.1em;
+    background-color: #0B965F;
+    color:white;
 }
 td{
     border: 1px solid;

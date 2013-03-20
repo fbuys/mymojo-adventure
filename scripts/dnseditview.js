@@ -63,6 +63,9 @@ function loadDNSTable(){
             
             //hide submit button after load
             $('#adddnssubmit').hide();
+            
+            //make li alternate colours
+            $('tr:nth-child(odd)').addClass('alternate');
 
         })
         .fail(function() { 
@@ -78,6 +81,9 @@ function loadDNSTable(){
 
 //make sure document is ready.
 $(document).ready( function(){
+    //change colors of alternate tr
+    //make li alternate colours
+    $('tr:nth-child(odd)').addClass('alternate');
     $('#product_tabel a').click(function(event){
         //get the product id
         $product_id = $(this).closest('tr').attr('id');//will be used to GET id for profile save
