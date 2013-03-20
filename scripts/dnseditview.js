@@ -207,23 +207,51 @@ $(document).ready( function(){
             
             //get the product id
             $get_id = $(this).closest('tr').attr('id');//will be used to GET id for profile save
-            $htmlid = $(this).attr('id');
-            $class = $(this).attr('class');
-            console.log( $get_id );
-            console.log( $htmlid );
-            console.log( $class );
-            $('.inline').editable('scripts/edit_dns.php?id='+$get_id, {
+//            $htmlid = $(this).attr('id');
+//            $class = $(this).attr('class');
+//            console.log( $get_id );
+//            console.log( $htmlid );
+//            console.log( $class );
+//            alert($get_id);
+            $('.inline').editable('scripts/edit_dns.php', {
                 event: 'dblclick',//activate on dblclick
                 submit: 'Save', //show save to submit data
                 indicator : '<img src="images/indicator.gif">',
                 tooltip   : 'Dubble click to edit...',
                 name : 'data',
+                submitdata : {dnsid: $get_id},
                 callback : function(value, settings) {
                     
-                    $(this).html($.trim(value));
+//                    $(this).html($.trim(value));
+//                    alert($get_id);
+                    //reload only dns div
+                    loadDNSTable(); //reload table so editable get reloaded
                     console.log(this);
-                    console.log(value);
-                    console.log(settings);
+                    console.log(value); //submitted content
+                    console.log(settings); //plugin settings
+                    
+                }
+            });
+            $('.inlinetype').editable('scripts/edit_dns.php', {
+                event: 'dblclick',//activate on dblclick
+                submit: 'Save', //show save to submit data
+                indicator : '<img src="images/indicator.gif">',
+                tooltip   : 'Dubble click to edit...',
+                name : 'data',
+                //data   : " {'SOA':'SOA','A':'A','MX':'MX','CNAME':'CNAME','NS':'NS','PTR':'PTR','TXT':'TXT','WRK':'WRK','SRV':'SRV' 'selected':'A'}",
+                data   : " {'SOA':'SOA','A':'A','MX':'MX','CNAME':'CNAME','NS':'NS','PTR':'PTR','TXT':'TXT','WRK':'WRK','SRV':'SRV' , 'selected':'A'}",
+                type   : 'select',
+                submitdata : {dnsid: $get_id},
+                callback : function(value, settings) {
+                    
+//                    $(this).html($.trim(value));
+//                    alert($get_id);
+                    //reload only dns div
+                    loadDNSTable(); //reload table so editable get reloaded
+                    console.log(this);
+                    console.log(value); //submitted content
+                    console.log(settings); //plugin settings
+                    
                 }
             });
             

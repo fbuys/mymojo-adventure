@@ -13,55 +13,70 @@ and open the template in the editor.
         <title>MyMojo-clientprofile</title>
     </head>
     <body>
-        
-        <!--heading + logo-->
-        <div id="heading">
-        <h1><a href="index.php">Afrihost - MyMojo</a></h1>
+        <div id="header-wrapper">
+            <!--heading + logo-->
+            <div id="header" class="container">
+                <div id="logo">
+                <h1><a href="#">Afrihost - MyMojo</a></h1>
+                </div>
+            
+
+                <!--toolbar -->
+                <div id="menu">
+                    <ul>
+                        <li>
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li>
+                            <a href="newclient.php">New</a>
+                        </li> 
+                        <li class="active">
+                            <a href="#">Contact Details</a>
+                        </li>
+                        <li>
+                            <?php
+                            echo "<a href=\"clientproduct.php?id=".$_GET['id']."\">Product Details</a>";
+                            ?>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         
-        <!--toolbar -->
-        <div id="toolbar">
-            <ul>
-                <li>
-                    <a href="index.php">Home</a>
-                </li>
-                <li>
-                    <a href="newclient.php">New</a>
-                </li> 
-                <li>
-                    <?php
-                    echo "<a href=\"clientproduct.php?id=".$_GET['id']."\">Product Details</a>";
-                    ?>
-                </li>
-            </ul>
+    <div id="page-wrapper">
+        <div id="page" class="container">
+            <div id="content" class="contactdetails">
+                <div id="contactdetails">
+                    <header>Client Contact Details</header>
+                    <form id ="contactdetailsform">
+                        <?php
+                            //link to database
+                            require 'scripts/database_connect.php';
+                            //create sql query using GET / url
+                            $client_id = $_GET['id']; //get client id
+                            $client_data = mysql_query("SELECT * FROM client_contact WHERE id={$client_id} ");
+                            $client_data = mysql_fetch_array( $client_data );
+
+
+                            echo "First Name: <input type=\"text\" name=\"firstname\" value=\"".$client_data['first_name']."\"/><br/>";
+                            echo "Last Name: <input type=\"text\" name=\"lastname\" value=\"".$client_data['last_name']."\"/><br/>";
+                            echo "Email Address: <input type='text' name='email' value='".$client_data['username']."'\><br/>";
+
+
+                        ?>
+                        <p></p>
+                        <input id="contactformsubmit"type="submit" value="Save">
+
+                    </form>
+
+                </div>
+                </div>
+            </div>
         </div>
+            
         
         <!--Contact Details Form-->
-        <div id="contactdetails">
-            <form id ="contactdetailsform">
-                
-                <?php
-                    //link to database
-                    require 'scripts/database_connect.php';
-                    //create sql query using GET / url
-                    $client_id = $_GET['id']; //get client id
-                    $client_data = mysql_query("SELECT * FROM client_contact WHERE id={$client_id} ");
-                    $client_data = mysql_fetch_array( $client_data );
-                
-                
-                    echo "First Name: <input type=\"text\" name=\"firstname\" value=\"".$client_data['first_name']."\"/><br/>";
-                    echo "Last Name: <input type=\"text\" name=\"lastname\" value=\"".$client_data['last_name']."\"/><br/>";
-                    echo "Email Address: <input type='text' name='email' value='".$client_data['username']."'\><br/>";
-                    
-                    
-                ?>
-                <p></p>
-                <input id="contactformsubmit"type="submit" value="Save">
-                
-            </form>
-                 
-             
-        </div>
+        
         
         
     </body>
