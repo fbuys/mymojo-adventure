@@ -1,7 +1,7 @@
 <?php
             //link to database
             //
-            require 'database_connect.php';
+            require '../scripts/database_connect.php';
             
             $find = $_POST['find']; //what is the user looking for
             $search_field = $_POST['search_field']; //what field to search in

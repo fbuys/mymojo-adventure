@@ -1,13 +1,12 @@
 <!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
+    this allows us to create new clients
 -->
 <!DOCTYPE html>
 <html>
     <head>
         <link type="text/css" rel="stylesheet" href="/css/general.css"/>
         <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
-        <script type="text/javascript" src="scripts/addclientprofile.js"></script>
+        <script type="text/javascript" src="client_scripts/addclientprofile.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
     </head>

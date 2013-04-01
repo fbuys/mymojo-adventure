@@ -1,12 +1,11 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * this adds the jquery that does the searching and alters the html on the index/search page
  */
 $(document).ready(function(){
     //make li alternate colours
     $('li:nth-child(odd)').addClass('alternate');
     
-    //set varailbe to to if changes occur
+    //set varaible to true if changes occur
         $('#searchForm').change(function(event) {
             FORM_HAS_CHANGED = true;//set to true because form changed           
         });
@@ -20,8 +19,8 @@ $(document).ready(function(){
         //check if changes has been made
         if(FORM_HAS_CHANGED){
             
-            //there is no changes so now we want to save
-            var $posting = $.post('scripts/index_search_results.php', $('#searchForm').serialize() , function(data) {
+            //there is now changes so now we want to save
+            var $posting = $.post('search_scripts/index_search_results.php', $('#searchForm').serialize() , function(data) {
                 //set form change variable to false
                 FORM_HAS_CHANGED = false;
 
@@ -34,7 +33,7 @@ $(document).ready(function(){
       
             //notify of error during post
             //add failed message to div contactdetails
-            $('#search').html("Failed retreive any results, try again!");
+            $('#searchResults').html("Failed retreive any results, try again!");
             
              
           })

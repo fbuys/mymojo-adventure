@@ -7,7 +7,7 @@
  */
 
     //connect to database
-    require 'database_connect.php';
+    require '../scripts/database_connect.php';
     
     //save posted variables
     $id = $_GET['id'];
@@ -17,6 +17,7 @@
     $datetime = date("Y-m-d H:i:s");
     
     
+    
     //create query
    $sql_query = "INSERT client_contact SET first_name='{$first_name}',
         last_name='{$last_name}', username='{$email}', updated_at='{$datetime}';";
@@ -24,5 +25,12 @@
         
     //submit query to database
     mysql_query($sql_query);
+    
+    //save newly created ID
+    $contact_id = mysql_insert_id(); //if 0 then it's a duplicate
+    
+    //send new contact id back;
+    echo $contact_id;
+    
     
 ?>

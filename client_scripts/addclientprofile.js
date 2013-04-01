@@ -36,23 +36,33 @@ $(document).ready( function(){
         if(FORM_HAS_CHANGED){
                     
             //there is no changes so now we want to save
-            var $posting = $.post('scripts/add_client_profile.php',$('#contactdetailsform').serialize() , function() {
+            var $posting = $.post('client_scripts/add_client_profile.php',$('#contactdetailsform').serialize() , function(data) {
             
-            //set form change variable to false
-            FORM_HAS_CHANGED = false;
-            //hide submit button after load
-            $('#addsubmit').hide(); 
-            
-            //add saved message to div contactdetails
-            $('#contactdetails p').html("Saved");
-            
-            //change colour of div
-            $('#contactdetails').css('background-color', '#33FF99')
-            
-            //reset the form
-            $('#contactdetailsform')[0].reset();
-            
-          })
+                if( data != 0)
+                {
+                    //set form change variable to false
+                    FORM_HAS_CHANGED = false;
+                    //hide submit button after load
+                    $('#addsubmit').hide(); 
+
+                    //add saved message to div contactdetails
+                    $('#contactdetails p').html("Saved");
+
+                    //change colour of div
+                    $('#contactdetails').css('background-color', '#33FF99')
+
+                    //reset the form
+                    $('#contactdetailsform')[0].reset();
+
+                    //redirect to new client page
+                    window.location = "../clientprofile.php?id="+data;
+                }
+                else
+                {
+                    //add saved message to div contactdetails
+                    $('#contactdetails p').html("Client Already Exists!");
+                }
+            })
       
           .fail(function() { 
       
