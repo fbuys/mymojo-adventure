@@ -7,19 +7,42 @@
  */
 
     //connect to database
-    require 'database_connect.php';
+    require_once '../scripts/database_connect.php';
     
     //save posted variables
     $contact_id = $_GET['id'];
     $product_id = 0;
-    $name = $_POST['name'];
+    $domain = $_POST['domain'];
     $vendor = $_POST['vendor'];
     $datetime = date("Y-m-d H:i:s");
+    
+    //add slashes and remove spaces
+    if(preg_match("/^\d+$/",  $contact_id) == 1){
+        $secured_contact_id = $contact_id;
+    }
+    else {
+        $secured_contact_id = "";
+    }
+    $secured_domain = trim(addslashes($domain));
+    $secured_vendor = trim(addslashes($vendor));
+    $secured_datetime = trim(addslashes($datetime));
+    
+//    echo $secured_contact_id;
+//    echo "</br>";
+//    echo $product_id;
+//    echo "</br>";
+//    echo $secured_domain;
+//    echo "</br>";
+//    echo $secured_vendor;
+//    echo "</br>";
+//    echo $secured_datetime;
+//    echo "</br>";
+    
     
     
     //create query
    $sql_query = "INSERT INTO product ( `name`, `group`, `vendor`, `created_at`, `updated_at`) 
-       VALUES ('{$name}', 'Hosting', '{$vendor}', '{$datetime}', '{$datetime}');";
+       VALUES ('{$secured_domain}', 'Hosting', '{$secured_vendor}', '{$secured_datetime}', '{$secured_datetime}');";
        
     //submit query to database
     $result = mysql_query($sql_query);

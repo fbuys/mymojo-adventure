@@ -8,9 +8,10 @@ and open the template in the editor.
         <link type="text/css" rel="stylesheet" href="/css/general.css"/>
         <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
         <script type ="text/javascript" src="scripts/jquery.jeditable.js"></script>
-        <script type="text/javascript" src="scripts/cancelproduct.js"></script>
-        <script type="text/javascript" src="scripts/addproduct.js"></script>
-        <script type="text/javascript" src="scripts/dnseditview.js"></script>
+        <script type ="text/javascript" src="scripts/jquery.validate.js"></script>
+        <script type="text/javascript" src="product_scripts/cancelproduct.js"></script>
+        <script type="text/javascript" src="product_scripts/addproduct.js"></script>
+        <script type="text/javascript" src="product_scripts/dnseditview.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>MyMojo-clientproduct</title>
     </head>
@@ -127,23 +128,28 @@ and open the template in the editor.
         <form id="DnsForm">
         Please note ALL fields are mandatory!
         <br/><br/>
-        * Record : <input type="text" name="record" value=""><br/>
-        * Type :  <select name="type">
-                    <option value="SOA">SOA</option>
-                    <option value="A">A</option>
-                    <option value="MX">MX</option>
-                    <option value="CNAME">CNAME</option>
-                    <option value="NS">NS</option>
-                    <option value="PTR">PTR</option>
-                    <option value="TXT">TXT</option>
-                    <option value="WRK">WRK</option>
-                    <option value="SRV">SRV</option>
-                 </select><br/>
-        * Priority (for MX) : <input type="text" name="priority" value=""><br/>
-        * Content : <input type="text" name="content" value=""><br/>
-        * TTL : <input type="text" name="ttl" value=""><br/>
-                 <input id="adddnssubmit" type="submit" value="Add">
-                 <p></p>
+        <label for="record">* Record :</label>
+        <input type="text" name="record" id="record" value="" inlength="1"><br/>
+        <label for="type">* Type :</label>
+            <select name="type" id="type">
+                <option value="SOA">SOA</option>
+                <option value="A">A</option>
+                <option value="MX">MX</option>
+                <option value="CNAME">CNAME</option>
+                <option value="NS">NS</option>
+                <option value="PTR">PTR</option>
+                <option value="TXT">TXT</option>
+                <option value="WRK">WRK</option>
+                <option value="SRV">SRV</option>
+             </select><br/>
+             <label for="priority" >* Priority (for MX) : </label>
+        <input type="text" name="priority" value="" id="priority" minlength="1"><br/>
+        <label for="content">* Content : </label>
+        <input type="text" name="content" value="" id="content"><br/>
+        <label for="submit">* TTL : </label>
+        <input type="text" name="ttl" value="" id="ttl"><br/>
+        <input id="adddnssubmit" type="submit" value="Add">
+        <p></p>
         <br/>
         Click on X (right-top) to close the popup!
         
@@ -156,10 +162,11 @@ and open the template in the editor.
         <form id="productForm">
         Please note ALL fields are mandatory!
         <br/><br/>
-        * Domain : <input type="text" name="name" value=""><br/>
-        * Vendor :  <select name="vendor">
+        * Domain : <input type="text" name="domain" value="" minlength="5"><br/>
+        * Vendor :  <select name="vendor" class="ignore">
                     <option value="Uniform">Uniform (co.za)</option>
                     <option value="Opensrs">OpenSRS (other)</option>
+                    <option value="IS">IS (org.za)</option>
                  </select><br/>
                  <input id="addproductsubmit" type="submit" value="Create">
                  <p></p>

@@ -1,6 +1,6 @@
 <?php
     //link to database
-    require 'database_connect.php';
+    require_once '../scripts/database_connect.php';
     
     $dns_id = $_POST['dnsid'];//get product id
     $field = trim($_POST['id']); //field name saved in id

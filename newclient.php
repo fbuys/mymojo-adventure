@@ -6,6 +6,7 @@
     <head>
         <link type="text/css" rel="stylesheet" href="/css/general.css"/>
         <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+        <script type ="text/javascript" src="scripts/jquery.validate.js"></script>
         <script type="text/javascript" src="client_scripts/addclientprofile.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
@@ -40,13 +41,18 @@
                 <div id="contactdetails">
                     <header>New Client Profile</header>
                     <form id ="contactdetailsform">
-
-                        First Name: <input type="text" name="firstname"><br/>
-                        Last Name: <input type="text" name="lastname"><br/>
-                        Email Address: <input type="text" name="email"><br/>
+                        
+                        <label for="firstname">First Name: </label><em>*</em>
+                        <input type="text" name="firstname" id="firstname" minlength="2"><br/>
+                        <label for="lastname">Last Name: </label><em>*</em>
+                        <input type="text" name="lastname" id="lastname" minlength="2"><br/>
+                        <label for="email">Email Address: </label><em>*</em>
+                        <input type="text" name="email" id="email" minlength="7"><br/>
+                        
+                        
                         
                         <input id="addsubmit" type="submit" value="Create">
-
+                        <p></p>
 
                     </form>
 

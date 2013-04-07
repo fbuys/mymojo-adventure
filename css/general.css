@@ -92,6 +92,7 @@ hr
 
 #header-wrapper
 {
+    
 	overflow: hidden;
 	background: #0B965F;
         
@@ -99,6 +100,7 @@ hr
 
 #header
 {
+    
 	overflow: hidden;
 	height: 80px;
         width: 100%;
@@ -432,8 +434,8 @@ a{
     display:none;
     position:fixed;
     _position:absolute; /* hack for internet explorer 6*/
-    height:350px;
-    width:350px;
+    height:300px;
+    width:550px;
     background:#FFFFFF;
     border:2px solid #cecece;
     z-index:2;
@@ -453,7 +455,7 @@ a{
 }
 #productDetails{
     
-    height:300px;
+    height:800px;
     width:50%;
     float: left;
     
@@ -478,7 +480,7 @@ a{
     border:#222222 solid;
     margin: auto;
     padding: auto;
-    width: 300px;
+    width: 520px;
     height: 250px;
     
     
@@ -495,13 +497,15 @@ a{
     
     
     
+    
 }
 
 #contactdetails input
 {
-    width: 90%;
+    width: 50%;
     border-radius: 10px;
     padding: 5px 10px 5px 10px;
+    
     
 }
 
@@ -513,6 +517,51 @@ a{
     font-size: 15px;
     margin: 10px 0px 0px 0px;
     border:1px #222222 solid;
+    
+}
+#contactdetails p
+{
+    width: 130px;
+    height: 50px;
+    float: right;
+    font-size: 20px;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 700px;
+    position: relative;
+}
+form label
+{
+    display: block;
+    width: 120px;
+    font-size: 14px;
+    float: left;
+    margin: 5px 0px 0px 0px;
+    
+    
+    
+}
+#DnsForm label
+{
+    
+    width: 170px;
+    
+    
+    
+    
+}
+
+
+label.error 
+{ 
+    font-size: 10px;
+    width: 100px;
+    height: 0px;    
+    vertical-align: middle; 
+    float: right;
+   
+    
+    
     
 }
   

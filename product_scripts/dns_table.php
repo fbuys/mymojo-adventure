@@ -1,8 +1,16 @@
 <?php
     //link to database
-    require 'database_connect.php';
+    require_once '../scripts/database_connect.php';
     
     $product_id = $_GET['id'];//get product id
+    //protect product id
+    if(preg_match("/^\d+$/",  trim($product_id)) == 1){
+        $product_id = trim($product_id);
+    }
+    else {
+        $product_id = "";
+    }
+    
     // sending query to get all dns linked to product
     $product_dns_result = mysql_query("SELECT * FROM product_dns WHERE product_id={$product_id}");
     

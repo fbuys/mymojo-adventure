@@ -51,7 +51,7 @@ function centerPopup(){
 
 function loadDNSTable(){
     //we want to access the dns table associated with this product
-        $.get('scripts/dns_table.php', { id: $product_id }, function(data) {
+        $.get('product_scripts/dns_table.php', { id: $product_id }, function(data) {
             //add dns table recently generated
             $('#dnstable').html(data);
             
@@ -78,6 +78,63 @@ function loadDNSTable(){
 
         //get the product id
         $product_id = 0;
+        
+    function formSubmitEditDNS(){
+        
+    // stop form from submitting normally 
+//    console.log("it works!");
+//    return false;
+
+    //check if changes has been made
+    if(FORM_HAS_CHANGED){
+
+        //there is no changes so now we want to save
+        var $posting = $.post('product_scripts/add_dns.php?id=' + $product_id,$('#DnsForm').serialize() , function(data) {
+
+        //alert(data);
+        if(data != 0)
+        {
+            //set form change variable to false
+            FORM_HAS_CHANGED = false;
+            //hide submit button after load
+            $('#adddnssubmit').hide(); 
+
+            //add saved message to div contactdetails
+            $('#DnsForm p').html("Saved!");
+
+            //change colour of div
+            $('#DnsForm').css('background-color', '#33FF99')
+
+            //remove popup
+            disablePopup();
+
+            //reload only dns div
+            loadDNSTable();
+            //reset the form
+            $('#DnsForm')[0].reset();
+        }
+        else
+        {
+            //add saved message to div contactdetails
+            $('#DnsForm p').html("DNS Entry Already Exists!");
+        }
+
+      })
+
+      .fail(function() { 
+
+        //notify of error during post
+        //notify of error during post
+        //add failed message to div contactdetails
+        $('#DnsForm p').html("Failed to add, try again!");
+
+        //change colour of div
+        $('#DnsForm').css('background-color', '#ffb147'); 
+    });
+
+  }
+
+}
 
 //make sure document is ready.
 $(document).ready( function(){
@@ -121,65 +178,56 @@ $(document).ready( function(){
             $('#DnsForm p').html("Not Saved!");
 
             //change colour of div
-            $('#DnsForm').css('background-color', '#FF6666');
+            $('#DnsForm').css('background-color', '#ffb147');
             
             
         });
     
-        //modify submit action
-    $('#DnsForm').submit(function(event) {
-        // stop form from submitting normally 
-        event.preventDefault();        
+    //modify submit action
+    $("#DnsForm").validate({
+        //debug: true,
+        submitHandler: formSubmitEditDNS,
+        //invalidHandler: alert('invalid'),
+        rules: {
+            record: {
+                required: true                
+            },
+            type: {
+                    required: true                
+                },
+            priority: {
+                    digits: true,
+                    required:   {
+                                    depends: function(element) {
+                                        return ($("#type").val()) === "MX";
+                                       
+                                    }  
+                                }
+                                                  
+                    },
+            content: {
+                    required: true                
+                },
+            ttl: {
+                    required: true,
+                    digits: true
+                }
         
-        //check if changes has been made
-        if(FORM_HAS_CHANGED){
-            
-            //there is no changes so now we want to save
-            var $posting = $.post('scripts/add_dns.php?id=' + $product_id,$('#DnsForm').serialize() , function(data) {
-            
-            //alert(data);
-            if(data != 0)
-            {
-                //set form change variable to false
-                FORM_HAS_CHANGED = false;
-                //hide submit button after load
-                $('#adddnssubmit').hide(); 
-
-                //add saved message to div contactdetails
-                $('#DnsForm p').html("Saved!");
-
-                //change colour of div
-                $('#DnsForm').css('background-color', '#33FF99')
-
-                //remove popup
-                disablePopup();
-                
-                //reload only dns div
-                loadDNSTable();
-                //reset the form
-                $('#DnsForm')[0].reset();
+        },
+        messages: {
+            domain: {
+               required: "Required!"
             }
-            else
-            {
-                //add saved message to div contactdetails
-                $('#DnsForm p').html("Product Already Exists!");
-            }
-            
-          })
-      
-          .fail(function() { 
-      
-            //notify of error during post
-            //notify of error during post
-            //add failed message to div contactdetails
-            $('#DnsForm p').html("Failed to add, try again!");
-            
-            //change colour of div
-            $('#DnsForm').css('background-color', '#FF6666'); 
-        });
         
-      }
-
+        },
+        success: function(label) {
+            label.addClass("valid").text("Ok!");
+        },
+        highlight: function(element, errorClass) { 
+            $(element).fadeOut(function() {
+                $(element).fadeIn();
+            });
+        }
     });
         
     //event on click for add_dns_icon
@@ -193,7 +241,7 @@ $(document).ready( function(){
                     $get_id = $(this).closest('tr').attr('id');//will be used to GET id for profile save
 
                     //there is changes so now we want to save
-                    var $getting = $.get('scripts/cancel_dns.php', { id: $get_id }, function() {
+                    var $getting = $.get('product_scripts/cancel_dns.php', { id: $get_id }, function() {
                     //remove row from table
                     $('#'+$get_id).hide('slow');                    
 
@@ -219,7 +267,71 @@ $(document).ready( function(){
 //            console.log( $htmlid );
 //            console.log( $class );
 //            alert($get_id);
-            $('.inline').editable('scripts/edit_dns.php', {
+
+            //$('.inline').editable('product_scripts/edit_dns.php', {
+            $('.inline').editable(function(value, settings) {
+                console.log(value.length);
+                
+                    if(this.id === "record")//validate record
+                    {
+                        //required
+                        if (value==null || value=="")
+                        {
+                            alert("Record is required! \n Not saved!");
+                            return false;
+                        }
+
+                    }
+                    else if(this.id === "priority")//validate priority
+                    {
+                        if($(this).closest('tr').find('.inlinetype').text() === "MX")//only required with mx
+                        {
+                            //required
+                            if (value==null || value=="")
+                            {
+                                alert("Priority is required! \n Not saved!");
+                                return false;
+                            }
+                            else if (!(/^\d+$/.test(value) && value.length > 1))
+                            {
+                                alert("TTL must be min. of 1 digit! \n Not saved!");
+                                //if MX check that it is a number + make sure min length reached
+                                return false;
+                            }
+                        }
+
+                    }
+                    else if(this.id === "ttl")//validate ttl
+                    {   
+                        //required
+                        if (value==null || value=="")
+                        {
+                            alert("TTL is required! \n Not saved!");
+                            return false;
+                        }
+                        else if (!(/^\d+$/.test(value) && value.length > 1))
+                        {
+                            alert("TTL must be min. of 1 digit! \n Not saved!");
+                            //if MX check that it is a number + make sure min length reached
+                            return false;
+                        }
+                        
+                    }
+                    else//must be content - validate
+                    {
+                        //required
+                        if (value==null || value=="")
+                        {
+                            alert("Content is required! \n Not saved!");
+                            return false;
+                        }
+                        
+                    }
+                    //console.log(settings);
+                    $.post('product_scripts/edit_dns.php', { dnsid: $get_id, id: this.id, data : value });//$('#DnsForm').serialize() , function(data) {});
+                    //return false;
+                },
+                {
                 event: 'dblclick',//activate on dblclick
                 submit: 'Save', //show save to submit data
                 indicator : '<img src="images/indicator.gif">',
@@ -232,13 +344,13 @@ $(document).ready( function(){
 //                    alert($get_id);
                     //reload only dns div
                     loadDNSTable(); //reload table so editable get reloaded
-                    console.log(this);
-                    console.log(value); //submitted content
-                    console.log(settings); //plugin settings
+//                    console.log(this);
+//                    console.log(value); //submitted content
+//                    console.log(settings); //plugin settings
                     
                 }
             });
-            $('.inlinetype').editable('scripts/edit_dns.php', {
+            $('.inlinetype').editable('product_scripts/edit_dns.php', {
                 event: 'dblclick',//activate on dblclick
                 submit: 'Save', //show save to submit data
                 indicator : '<img src="images/indicator.gif">',

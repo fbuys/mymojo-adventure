@@ -17,7 +17,7 @@ $(document).ready( function(){
                     $get_id = $(this).closest('tr').attr('id');//will be used to GET id for profile save
 
                     //there is changes so now we want to save
-                    var $getting = $.get('scripts/cancel_product.php', { id: $get_id }, function() {
+                    var $getting = $.get('product_scripts/cancel_product.php', { id: $get_id }, function() {
                     //remove row from table
                     $('#'+$get_id).hide('slow');                    
 

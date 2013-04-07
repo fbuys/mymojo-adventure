@@ -7,7 +7,7 @@
  */
 
     //connect to database
-    require 'database_connect.php';
+    require_once '../scripts/database_connect.php';
     
     //save posted variables
     $id = $_GET['id'];

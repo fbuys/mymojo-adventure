@@ -7,7 +7,8 @@ and open the template in the editor.
     <head>
         <link type="text/css" rel="stylesheet" href="/css/general.css"/>
         <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
-        <script type="text/javascript" src="scripts/clientprofile.js"></script>
+        <script type ="text/javascript" src="scripts/jquery.validate.js"></script>
+        <script type="text/javascript" src="client_scripts/clientprofile.js"></script>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>MyMojo-clientprofile</title>
@@ -57,15 +58,17 @@ and open the template in the editor.
                             $client_data = mysql_query("SELECT * FROM client_contact WHERE id={$client_id} ");
                             $client_data = mysql_fetch_array( $client_data );
 
-
-                            echo "First Name: <input type=\"text\" name=\"firstname\" value=\"".$client_data['first_name']."\"/><br/>";
-                            echo "Last Name: <input type=\"text\" name=\"lastname\" value=\"".$client_data['last_name']."\"/><br/>";
-                            echo "Email Address: <input type='text' name='email' value='".$client_data['username']."'\><br/>";
-
+                            echo "<label for='firstname'>First Name: </label><em>*</em>";
+                            echo "<input type=\"text\" name=\"firstname\" id=\"firstname\" minlength=\"2\" value=\"".$client_data['first_name']."\"/><br/>";
+                            echo "<label for=\"lastname\">Last Name: </label><em>*</em>";
+                            echo "<input type=\"text\" name=\"lastname\" id=\"lastname\" minlength=\"2\" value=\"".$client_data['last_name']."\"/><br/>";
+                            echo "<label for=\"email\">Email Address: </label><em>*</em>";
+                            echo "<input type='text' name='email' id=\"email\" minlength=\"7\" value='".$client_data['username']."'\><br/>";
 
                         ?>
-                        <p></p>
+                        
                         <input id="contactformsubmit"type="submit" value="Save">
+                        <p></p>
 
                     </form>
 

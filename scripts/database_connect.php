@@ -1,7 +1,7 @@
 <?php
 
     //require app config file
-    require 'app_config.php';
+    require_once 'app_config.php';
 
     //connect to host
     mysql_connect(DATABASE_HOST, DATABASE_USERNAME)

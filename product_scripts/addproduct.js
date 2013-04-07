@@ -52,67 +52,20 @@ function centerNewProductPopup(){
 
 }
 
-
-//make sure document is ready.
-$(document).ready( function(){
-    $('.add_icon').click(function(event){
-        console.log("icon clicked");
-        //centering with css
-        centerNewProductPopup();
-        //load popup
-        loadNewProductPopup();
-        });
-
-        //CLOSING POPUP
-        //Click the x event!
-        $("#popupProductClose").click(function(){
-            disableNewProductPopup();
-        });
-        /*/Click out event!
-        $("#backgroundPopup").click(function(){
-            disableNewProductPopup();
-        });
-        //Press Escape event!
-        $(document).keypress(function(e){
-            if(e.keyCode===27 && $popupStatus===1){
-                disableNewProductPopup();
-            }
-        });*/
-    
-        //hide submit button after load
-        //$('#addproductsubmit').hide();
-        
-        //set varailbe to to if changes occur
-        $('#productForm').change(function(event) {
-            FORM_HAS_CHANGED = true;//set to true because form changed
-            //show submit button after load
-            //$('#addproductsubmit').show();
-
-            //save reminded message
-            $('#productForm p').html("Not Saved!");
-
-            //change colour of div
-            $('#productForm').css('background-color', '#FF6666');
-            
-            
-        });
-    
-        //modify submit action
-    $('#productForm').submit(function(event) {
-        // stop form from submitting normally 
-        event.preventDefault();        
+function formSubmitAddProduct() {
         
         //check if changes has been made
         if(FORM_HAS_CHANGED){
             
             //get the client id from the url
             $get_id = document.location.toString();
-            $get_id = $get_id.substr($get_id.indexOf("id"),4);//will be used to GET id for profile save
-                    
+            console.log($get_id);
+            $get_id = $get_id.substr($get_id.indexOf("id"));//will be used to GET id for profile save
+            console.log($get_id);        
             //there is no changes so now we want to save
-            var $posting = $.post('scripts/add_product.php?' + $get_id,$('#productForm').serialize() , function(data) {
+            var $posting = $.post('product_scripts/add_product.php?' + $get_id,$('#productForm').serialize() , function(data) {
             
-            if(data != 0)
+            if(data !== 0)
             {
                 //set form change variable to false
                 FORM_HAS_CHANGED = false;
@@ -148,12 +101,74 @@ $(document).ready( function(){
             $('#productForm p').html("Failed to add, try again!");
             
             //change colour of div
-            $('#productForm').css('background-color', '#FF6666'); 
+            $('#productForm').css('background-color', '#ffb147'); 
         });
         
-      }
+     }
 
+    }
+
+
+//make sure document is ready.
+$(document).ready( function(){
+    $('.add_icon').click(function(event){
+        console.log("icon clicked");
+        //centering with css
+        centerNewProductPopup();
+        //load popup
+        loadNewProductPopup();
+        });
+
+        //CLOSING POPUP
+        //Click the x event!
+        $("#popupProductClose").click(function(){
+            disableNewProductPopup();
+        });
+        
+        //set varailbe to to if changes occur
+        $('#productForm').change(function(event) {
+            FORM_HAS_CHANGED = true;//set to true because form changed
+            //show submit button after load
+            //$('#addproductsubmit').show();
+
+            //save reminded message
+            $('#productForm p').html("Not Saved!");
+
+            //change colour of div
+            $('#productForm').css('background-color', '#ffb147');
+            
+            
+        });
+    
+        //modify submit action and validate
+        $("#productForm").validate({
+        //debug: true,
+        submitHandler: formSubmitAddProduct,
+        //invalidHandler: alert('invalid'),
+        rules: {
+            domain: {
+                required: true,
+                domain: true
+                
+            }
+        
+        },
+        messages: {
+            domain: {
+               required: "Required!"
+            }
+        
+        },
+        success: function(label) {
+            label.addClass("valid").text("Ok!");
+        },
+        highlight: function(element, errorClass) { 
+            $(element).fadeOut(function() {
+                $(element).fadeIn();
+            });
+        }
     });
+    
             
             
     

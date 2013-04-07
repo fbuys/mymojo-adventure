@@ -283,10 +283,12 @@ $.extend($.validator, {
 		remote: "Please fix this field.",
 		email: "Please enter a valid email address.",
 		url: "Please enter a valid URL.",
+                domain: "Please use this format domain.tld",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
 		number: "Please enter a valid number.",
 		digits: "Please enter only digits.",
+                firstnames: "Please use alphabetical OR '-' OR space characters only", //my own for aplha betical characters
 		creditcard: "Please enter a valid credit card number.",
 		equalTo: "Please enter the same value again.",
 		maxlength: $.validator.format("Please enter no more than {0} characters."),
@@ -809,10 +811,12 @@ $.extend($.validator, {
 		required: {required: true},
 		email: {email: true},
 		url: {url: true},
+                domain: {domain: true},
 		date: {date: true},
 		dateISO: {dateISO: true},
 		number: {number: true},
 		digits: {digits: true},
+                firstnames: {alpha: true},
 		creditcard: {creditcard: true}
 	},
 
@@ -1020,6 +1024,11 @@ $.extend($.validator, {
 			// contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
 			return this.optional(element) || /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
 		},
+                // own validator for domain names
+		domain: function( value, element ) {
+			// contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
+			return this.optional(element) || /^[a-zA-Z0-9\-\.]+\.(com|org|net|mil|edu|co.za|org.za|co|net|NET|info|INFO|tv|TV|co.uk|CO.UK|COM|ORG|NET|MIL|EDU|CO.ZA|ORG.ZA|CO)$/i.test(value);
+		},
 
 		// http://docs.jquery.com/Plugins/Validation/Methods/date
 		date: function( value, element ) {
@@ -1039,6 +1048,10 @@ $.extend($.validator, {
 		// http://docs.jquery.com/Plugins/Validation/Methods/digits
 		digits: function( value, element ) {
 			return this.optional(element) || /^\d+$/.test(value);
+		},
+                // check for alpha only
+		firstnames: function( value, element ) {
+			return this.optional(element) || /^[a-zA-Z]+((\s|\-)[a-zA-Z]+)?$/.test(value);
 		},
 
 		// http://docs.jquery.com/Plugins/Validation/Methods/creditcard
