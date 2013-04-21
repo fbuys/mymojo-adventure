@@ -1,0 +1,569 @@
+/* 
+    Document   : general
+    Created on : 06 Mar 2013, 8:37:50 PM
+    Author     : francois
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+html, body
+{
+	height: 100%;
+}
+
+body
+{
+	margin: 0px;
+	padding: 0px;
+	background: #3D3D3D;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+h1, h2, h3
+{
+	margin: 0;
+	padding: 0;
+}
+
+p, ol, ul
+{
+	margin-top: 0px;
+}
+
+p
+{
+	line-height: 180%;
+}
+
+strong
+{
+}
+
+a
+{
+	color: #0B965F;
+}
+
+a:hover
+{
+	text-decoration: none;
+}
+
+a img
+{
+	border: none;
+}
+
+img.border
+{
+}
+
+img.alignleft
+{
+	float: left;
+}
+
+img.alignright
+{
+	float: right;
+}
+
+img.aligncenter
+{
+	margin: 0px auto;
+}
+
+hr
+{
+	display: none;
+}
+
+.container
+{
+	width: 1100px;
+	margin: 0px auto;
+}
+
+#header-wrapper
+{
+    
+	overflow: hidden;
+	background: #0B965F;
+        
+}
+
+#header
+{
+    
+	overflow: hidden;
+	height: 80px;
+        width: 100%;
+        margin: 0px 20px 0px 20px;
+        
+        
+}
+
+#header a{
+    /*remove hyperlink decoration*/
+    text-decoration: none;
+}
+
+#logo
+{
+	float: left;
+	width: 400px;
+        
+}
+
+#logo h1 a
+{
+	display: block;
+	line-height: 80px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: 'Archivo Narrow', sans-serif;
+	font-size: 1.3em;
+	color: #FFFFFF;
+}
+
+#menu
+{
+	float: right;
+	width: 750px;
+        margin: 0px 100px 0px 20px;        
+        
+}
+
+#menu ul
+{
+	float: left;
+	margin: 0px;
+	padding: 20px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li
+{
+	float: left;
+	margin-left: 2em;
+}
+
+#menu a
+{
+	display: block;
+	padding: 10px 20px;
+	letter-spacing: 2px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: 'Archivo Narrow', sans-serif;
+	font-size: 1.10em;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+#menu .active a
+{
+	background: #f90000;
+	border-radius: 5px;
+	box-shadow: 0px 0px 0px 5px rgba(255,255,255,0.1);
+	border: 1px solid #FA3F52;
+	color: #FFFFFF;
+}
+
+#menu .active a:hover
+{
+        background-color: #FD6384;
+}
+
+#menu .active a:active
+{
+        background-color: #FC3F68;
+}
+
+#menu a:hover
+{
+	text-decoration: none;
+}
+
+#page-wrapper
+{
+	overflow: hidden;
+	padding: 5em 0em;
+	background: #FFFFFF;
+        
+}
+
+#page
+{
+	overflow: hidden;
+        
+        margin: auto;
+        /*position: absolute;*/
+}
+
+#content
+{
+    
+}
+
+#content header
+{
+	display: block;
+	letter-spacing: -2px;
+	font-size: 2.30em;
+	font-weight: 400;
+	color: #333333;
+        margin: auto;
+        
+        text-align: center;
+        
+}
+
+.search
+{
+    margin: auto;
+    border:#222222 solid;
+    border-radius: 40px;
+    overflow: hidden;
+    padding: 10px 0px 0px 0px;
+    height: 150px;
+    width: 500px;
+}
+
+#search
+{
+    margin: 0px;
+    
+    padding: 0px 20px 20px 20px;
+}
+
+
+
+#searchForm
+{
+    font-size: 14px;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    
+}
+
+#autocomplete
+{
+    width: 90%;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+}
+#searchsubmit
+{
+    float: right;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 20px 10px 10px 10px;
+}
+  
+#searcwrapper
+{
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+    margin: 0px 0px 0px 0px;
+    background: #FFFFFF;
+    
+}
+#searchContainer
+{
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+    margin: auto;
+    background: #FFFFFF;
+    border: #0B965F solid ;
+    border-radius: 20px;
+}
+#searchResults
+{
+    overflow: hidden;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background: #FFFFFF;
+    
+}
+
+#searchResults h2
+{
+    display: block;
+    letter-spacing: -2px;
+    font-size: 2.30em;
+    font-weight: 400;
+    color: #333333;
+    margin: auto;
+}
+#searchResults ul
+{
+       
+    list-style: none;
+    line-height: normal;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    
+}
+
+#searchResults li:nth-child(even)
+{
+    font-size: 16px;
+    padding: 10px 00px 10px 100px;
+    margin: -10px 00px 10px 00px;
+    background-color: #95ce9b;
+    border-bottom:1px dotted #02620d;
+    
+}
+
+#searchResults li:nth-child(odd)
+{
+    font-size: 16px;
+    padding: 10px 00px 10px 100px;
+    margin: -10px 00px 10px 00px;
+    background-color: #fff;
+    border-bottom:1px dotted #02620d;
+}
+#searchResults p
+{
+    font-size: 8px;
+    text-align: right;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    
+}
+
+
+
+#icon{
+    /*set size of icon*/
+    height: 20px;
+    width: 20px;
+    /*center image*/
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px -5px 0px;
+    /*remove hyperlink decoration*/
+    text-decoration: none;
+    
+
+}
+/*Tables General*/
+
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse:collapse;
+    width:70%;
+    height:auto;
+    padding: 5px;
+    background-color: #58ee4f;
+}
+
+tr.alternate td
+{
+color:#000000;
+background-color:#EAF2D3;
+}
+
+th
+{
+    font-size:1.1em;
+    background-color: #0B965F;
+    color:white;
+}
+td{
+    border: 1px solid;
+}
+a{
+    cursor: pointer;
+    text-decoration:none;
+}
+/*contactdetails div for client profile contact details part*/
+#contactdetails{
+    border-radius: 10px;
+    height: auto;
+    width: 30%;
+    float: left;
+    padding: 20px;
+}
+
+#backgroundPopup{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    background:#000000;
+    border:1px solid #cecece;
+    z-index:1;
+}
+
+#popupNewProduct{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:300px;
+    width:350px;
+    background:#FFFFFF;
+    border:2px solid #cecece;
+    z-index:2;
+    padding:12px;
+    font-size:13px;
+}
+
+#popupProductClose{
+    font-size:14px;
+    line-height:14px;
+    right:6px;
+    top:4px;
+    position:absolute;
+    color:#6fa5fd;
+    font-weight:700;
+    display:block;
+}
+#popupNewDns{
+    display:none;
+    position:fixed;
+    _position:absolute; /* hack for internet explorer 6*/
+    height:300px;
+    width:550px;
+    background:#FFFFFF;
+    border:2px solid #cecece;
+    z-index:2;
+    padding:12px;
+    font-size:13px;
+}
+
+#popupDnsClose{
+    font-size:14px;
+    line-height:14px;
+    right:6px;
+    top:4px;
+    position:absolute;
+    color:#6fa5fd;
+    font-weight:700;
+    display:block;
+}
+#productDetails{
+    
+    height:800px;
+    width:50%;
+    float: left;
+    
+}
+
+#dnstable{
+    
+    height:300px;
+    width:50%;
+    float: left;
+}
+
+.contactdetails
+{
+    
+    
+}
+
+#contactdetails
+{
+    border-radius: 20px;
+    border:#222222 solid;
+    margin: auto;
+    padding: auto;
+    width: 520px;
+    height: 250px;
+    
+    
+    
+}
+
+#contactdetailsform
+{
+    font-size: 14px;
+    text-align: left;
+    padding: 0px 0px 0px 0px;
+    border-radius: 10px;
+    
+    
+    
+    
+    
+}
+
+#contactdetails input
+{
+    width: 50%;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+    
+    
+}
+
+#contactdetails input[type="submit"] 
+{   
+    float: right;
+    width: 30%;
+    border-radius: 0px;
+    font-size: 15px;
+    margin: 10px 0px 0px 0px;
+    border:1px #222222 solid;
+    
+}
+#contactdetails p
+{
+    width: 130px;
+    height: 50px;
+    float: right;
+    font-size: 20px;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 700px;
+    position: relative;
+}
+form label
+{
+    display: block;
+    width: 120px;
+    font-size: 14px;
+    float: left;
+    margin: 5px 0px 0px 0px;
+    
+    
+    
+}
+#DnsForm label
+{
+    
+    width: 170px;
+    
+    
+    
+    
+}
+
+
+label.error 
+{ 
+    font-size: 10px;
+    width: 100px;
+    height: 0px;    
+    vertical-align: middle; 
+    float: right;
+   
+    
+    
+    
+}
+  
+
+
