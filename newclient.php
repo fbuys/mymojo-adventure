@@ -4,7 +4,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+<<<<<<< HEAD
         <link type="text/css" rel="stylesheet" href="css/general.css"/>
+=======
+        <link type="text/css" rel="stylesheet" href="/css/general.css"/>
+>>>>>>> 88e1521bb63b6132028f88aec2c108f49c48536e
         <script type ="text/javascript" src="scripts/jquery-1.9.1.js"></script>
         <script type ="text/javascript" src="scripts/jquery.validate.js"></script>
         <script type="text/javascript" src="client_scripts/addclientprofile.js"></script>
